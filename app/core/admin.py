@@ -20,6 +20,25 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {"fields": ("email", "password")}),
         (_("Permissions"), {"fields": ("is_active", "is_staff", "is_superuser")}),
+        (_("Important dates"), {"fields": ("last_login",)}),
+    )
+    readonly_fields = ["last_login"]
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": (
+                    "email",
+                    "password1",
+                    "password2",
+                    "name",
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                ),
+            },
+        ),
     )
 
 
@@ -27,3 +46,5 @@ admin.site.register(models.User, UserAdmin)
 """assign the UserAdmin class to the user model to override the default user
 admin page
 """
+
+admin.site.register(models.Recipe)
