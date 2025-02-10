@@ -15,17 +15,11 @@ from recipe import views
 
 router = DefaultRouter()
 router.register("recipes", views.RecipeViewSet)
+router.register("tags", views.TagViewSet)
 
 app_name = "recipe"
 
 urlpatterns = [
     path("", include(router.urls)),
-    # path("api/schema", SpectacularAPIView.as_view(), name="api-schema"),
-    # path(
-    #     "api/docs",
-    #     SpectacularSwaggerView.as_view(url_name="api-schema"),
-    #     name="api-docs",
-    # ),
-    # path("api/user", include("user.urls")),
-    # path("api/recipe", include("recipe.urls")),
+
 ]
