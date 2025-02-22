@@ -61,7 +61,8 @@ class Recipe(models.Model):
     time_minutes = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     link = models.CharField(max_length=255, blank=True)
-    tags = models.ManyToManyField('Tag')
+    tags = models.ManyToManyField('Tag') # create a relationship with tag model calling entity name as model name suggests
+    ingredients = models.ManyToManyField('Ingredient')
 
     def __str__(self):
         return self.title
@@ -77,3 +78,15 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name # ref two
+    
+class Ingredient(models.Model):
+    """Ingredient for a recipes"""
+
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.name
